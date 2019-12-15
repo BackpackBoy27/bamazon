@@ -10,10 +10,20 @@ const connection = mysql.createConnection({
 });
 
 connection.connect(err => {
-    if(err) console.log(err);
-    console.log('connection success');
-    connection.end();
-});
+   if(err) throw err;
+
+
+
+    connection.query("SELECT * FROM bamazon.products", (err, res) => {
+        if (err) console.log(err);
+        console.table(res);
+    });
+
+
+
+   connection.end();
+})
+
 
 
 // inquirer.prompt({
